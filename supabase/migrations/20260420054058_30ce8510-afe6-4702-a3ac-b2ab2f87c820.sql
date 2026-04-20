@@ -1,4 +1,3 @@
--- Appointments table for booking requests
 create table public.appointments (
   id uuid primary key default gen_random_uuid(),
   name text not null,
@@ -13,14 +12,12 @@ create table public.appointments (
 
 alter table public.appointments enable row level security;
 
--- Allow anyone (anon visitors) to submit a booking
 create policy "Anyone can create appointment"
   on public.appointments
   for insert
   to anon, authenticated
   with check (true);
 
--- Contact messages
 create table public.contact_messages (
   id uuid primary key default gen_random_uuid(),
   name text not null,
